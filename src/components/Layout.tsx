@@ -9,8 +9,8 @@ const Layout: React.FC = () => {
         <Outlet />
       </main>
 
-      <footer className="w-full text-white py-5 flex flex-col justify-center items-center">
-        <div className="flex items-center gap-3 text-xs mb-2">
+      <footer className="w-full text-white py-5 flex flex-col justify-center text-[0.65rem] md:text-xs items-center">
+        <div className="flex items-center gap-1 md:gap-3 mb-1 md:mb-2">
           <a
             href="https://anuragghosh.com"
             rel="noopener noreferrer"
@@ -38,9 +38,9 @@ const Layout: React.FC = () => {
             Contact
           </a>
         </div>
-        <small className="text-gray-400 block text-xs">
+        <span className="text-gray-400 block">
           &copy; {new Date().getFullYear()} Anurag Ghosh. All rights reserved.
-        </small>
+        </span>
       </footer>
       <div
         className="absolute top-0 left-0 w-full h-full opacity-10 z-10 pointer-events-none"
