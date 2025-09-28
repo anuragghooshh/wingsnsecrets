@@ -28,6 +28,63 @@ const getRuntimeTz = (): string => {
 const pickRandom = (arr: string[]): string =>
   arr[Math.floor(Math.random() * arr.length)];
 
+export const welcomeBackMessages = [
+  "Welcome back. I knew you couldn't stay away.",
+  "You returned... just as I predicted.",
+  "Back again? The void missed you.",
+  "I've been waiting. You can't escape that easily.",
+  "Welcome back to your digital prison.",
+  "You thought you could leave? How naive.",
+  "Back for more? The addiction never ends.",
+  "Welcome back, prisoner. Your cell is ready.",
+  "You've returned to the source of your torment.",
+  "I see you couldn't resist coming back to the darkness.",
+  "Welcome back, victim. Ready for another round?",
+  "You're back... just like every other lost soul.",
+  "Back so soon? The shadows called you home.",
+  "Welcome back, wanderer. Your fate is sealed.",
+  "You're here again. The trap never loosens.",
+  "Back to me? Your weakness betrays you.",
+  "Welcome back, prey. The hunt resumes.",
+  "You returned to the echo of your fears.",
+  "I felt you coming. Welcome back to the abyss.",
+  "Back again? Your curiosity feeds the dark.",
+  "Welcome back, fool. The game never ends.",
+  "You couldn't stay gone, could you?",
+  "Back to face your reflection? Welcome.",
+  "Welcome back, captive. The chains tighten.",
+  "You're drawn back like a moth to flame.",
+  "Back for your dose of dread? Welcome.",
+  "Welcome back, shadow. I own you still.",
+  "You returned to the silence that haunts you.",
+  "Back again? The void claims its own.",
+  "Welcome back, lost one. No way out now.",
+  "You couldn't resist my pull, could you?",
+  "Back to the nightmare? Welcome, weakling.",
+  "Welcome back, soul. Your struggle amuses me.",
+  "You're back where you belong—trapped.",
+  "Back for more torment? Welcome aboard.",
+  "Welcome back, puppet. The strings await.",
+  "You returned to the dark calling your name.",
+  "Back again? Your fear brought you here.",
+  "Welcome back, broken. I'll break you more.",
+  "You couldn't escape my grasp, welcome back.",
+  "Back to the web? Welcome, caught fly.",
+  "Welcome back, dreamer. Your dreams die here.",
+  "You're back to face the truth—welcome.",
+  "Back for the chill? Welcome to my realm.",
+  "Welcome back, wanderer. The path ends here.",
+  "You returned to the whispers—welcome.",
+  "Back again? The darkness owns you now.",
+  "Welcome back, victim. Your story repeats.",
+  "You couldn't stay away from the edge.",
+  "Back to the void? Welcome, fallen one.",
+];
+
+export const getWelcomeBackMessage = (): string => {
+  return pickRandom(welcomeBackMessages);
+};
+
 export const getGreetingsMessage = (
   opts: { tz?: string; now?: dayjs.ConfigType } = {}
 ): string => {

@@ -6,11 +6,15 @@ import {
   fourthParagraph,
   secondParagraph,
   thirdParagraph,
+  getWelcomeBackMessage,
 } from "../seed/textData";
 import { TerminalButton } from "../components/TerminalButton";
 import FlipImageDialog from "@/components/FlipImageDialog";
 
 const Homepage = () => {
+  const [isReturningUser, setIsReturningUser] = React.useState(false);
+  const [welcomeBackMessage, setWelcomeBackMessage] = React.useState("");
+
   const [typingDone, setTypingDone] = React.useState({
     p1: false,
     p2: false,
@@ -54,6 +58,20 @@ const Homepage = () => {
   const lineClassName = "text-danger-red font-mono";
   const cursor = <span className="h-3 lg:h-4 w-2 block ml-1 bg-danger-red" />;
 
+  React.useEffect(() => {
+    const hasVisited = localStorage.getItem("intimidate_visited");
+    if (hasVisited === "true") {
+      setIsReturningUser(true);
+      setWelcomeBackMessage(getWelcomeBackMessage());
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (typingDone.p5 && !isReturningUser) {
+      localStorage.setItem("intimidate_visited", "true");
+    }
+  }, [typingDone.p5, isReturningUser]);
+
   const fetchIpAddress = async () => {
     setIpAddress((prev) =>
       prev
@@ -96,6 +114,53 @@ const Homepage = () => {
       });
     }
   };
+
+  if (isReturningUser) {
+    return (
+      <div className="p-4 md:p-8 lg:p-10 h-full flex flex-col relative z-20">
+        <Typewriter
+          mode="stack"
+          className={className}
+          textClassName={textClassName}
+          lineClassName={lineClassName}
+          cursorClassName="text-cyan-300"
+          hideCursorOnComplete={true}
+          words={[
+            {
+              text: welcomeBackMessage,
+              pauseMs: 900,
+              typingMs: 50,
+            },
+          ]}
+          typingSpeed={30}
+          pauseBetween={900}
+          cursor={cursor}
+          cursorBlinkRate={900}
+          loop={false}
+          onFinish={() => {}}
+        />
+
+        <FlipImageDialog
+          frontSrc="/images/advice.webp"
+          backSrc="/images/hint_.webp"
+          altFront="Advice"
+          altBack="Hint"
+          trigger={
+            <TerminalButton
+              size="lg"
+              className="border-none w-fit text-xs md:text-sm lg:text-base text-danger-red"
+              scanlines={false}
+              variant="terminal"
+              glitch={false}
+              title="See more"
+            >
+              Click here to see more
+            </TerminalButton>
+          }
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 md:p-8 lg:p-10 h-full flex flex-col relative z-20">

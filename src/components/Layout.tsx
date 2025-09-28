@@ -4,7 +4,7 @@ import grainImage from "../../public/images/grain.gif";
 
 const Layout: React.FC = () => {
   return (
-    <div className="w-screen h-screen relative bg-black flex flex-col">
+    <div className="w-screen h-screen relative bg-black flex flex-col font-mono">
       <main className="flex-1 w-full h-full overflow-y-auto scrollbar-hide ">
         <Outlet />
       </main>
@@ -14,6 +14,7 @@ const Layout: React.FC = () => {
           <a
             href="https://anuragghosh.com"
             rel="noopener noreferrer"
+            title="Anurag Ghosh"
             className="text-gray-400 hover:text-white transition"
           >
             Anurag Ghosh
@@ -22,6 +23,7 @@ const Layout: React.FC = () => {
           <a
             href="https://anuragghosh.com/about"
             rel="noopener noreferrer"
+            title="About Anurag Ghosh"
             className="text-gray-400 hover:text-white transition"
           >
             About
@@ -30,12 +32,13 @@ const Layout: React.FC = () => {
           <a
             href="https://anuragghosh.com/contact"
             rel="noopener noreferrer"
+            title="Contact Anurag Ghosh"
             className="text-gray-400 hover:text-white transition"
           >
             Contact
           </a>
         </div>
-        <small className="text-gray-400 block">
+        <small className="text-gray-400 block text-xs">
           &copy; {new Date().getFullYear()} Anurag Ghosh. All rights reserved.
         </small>
       </footer>
