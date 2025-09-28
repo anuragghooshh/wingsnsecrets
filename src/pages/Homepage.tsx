@@ -249,7 +249,7 @@ const Homepage = () => {
           typingDone.p5 ? (
             <TerminalButton
               size="lg"
-              className="border-none w-fit text-base text-danger-red"
+              className="border-none w-fit text-xs md:text-sm lg:text-base text-danger-red"
               scanlines={false}
               variant="terminal"
               glitch={false}

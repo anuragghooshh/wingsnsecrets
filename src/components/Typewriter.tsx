@@ -299,6 +299,12 @@ export const Typewriter: React.FC<TypewriterProps> = ({
         ease: "linear",
       }}
       className={["inline-block", cursorClassName].filter(Boolean).join(" ")}
+      style={{ 
+        display: 'inline-block',
+        verticalAlign: 'baseline',
+        width: 0,
+        overflow: 'visible'
+      }}
     >
       {cursor}
     </motion.span>
@@ -329,7 +335,7 @@ export const Typewriter: React.FC<TypewriterProps> = ({
       >
         {/* completed lines */}
         {lines.map((l, i) => (
-          <span key={i} className={"inline-flex items-baseline"}>
+          <span key={i} className={"inline-block"}>
             {prefix ? <span className="mr-1">{renderNode(prefix)}</span> : null}
             <span className={[lineClassName, l.className, textClassName].filter(Boolean).join(" ")}>
               {l.text}
@@ -338,7 +344,7 @@ export const Typewriter: React.FC<TypewriterProps> = ({
           </span>
         ))}
         {/* active line (still shown when done; caret hidden) */}
-        <span className={"inline-flex items-baseline"}>
+        <span className={"inline-block"}>
           {prefix ? <span className="mr-1">{renderNode(prefix)}</span> : null}
           <span className={[current.className, textClassName].filter(Boolean).join(" ")}>
             {shown}
@@ -353,7 +359,7 @@ export const Typewriter: React.FC<TypewriterProps> = ({
   return (
     <motion.span
       {...containerProps}
-      className={["inline-flex items-baseline", className].filter(Boolean).join(" ")}
+      className={["inline-block", className].filter(Boolean).join(" ")}
       aria-label={ariaLabel}
       aria-live={ariaLabel ? "polite" : undefined}
       role={ariaLabel ? "text" : undefined}
