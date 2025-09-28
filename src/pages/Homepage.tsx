@@ -12,6 +12,7 @@ import { TerminalButton } from "../components/TerminalButton";
 import FlipImageDialog from "@/components/FlipImageDialog";
 
 const Homepage = () => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const [isReturningUser, setIsReturningUser] = React.useState(false);
   const [welcomeBackMessage, setWelcomeBackMessage] = React.useState("");
 
@@ -58,6 +59,13 @@ const Homepage = () => {
   const lineClassName = "text-danger-red font-mono";
   const cursor = <span className="h-3 lg:h-4 w-2 block ml-1 bg-danger-red" />;
 
+  const scrollToBottom = React.useCallback(() => {
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      mainElement.scrollTop = mainElement.scrollHeight;
+    }
+  }, []);
+
   React.useEffect(() => {
     const hasVisited = localStorage.getItem("intimidate_visited");
     if (hasVisited === "true") {
@@ -71,6 +79,13 @@ const Homepage = () => {
       localStorage.setItem("intimidate_visited", "true");
     }
   }, [typingDone.p5, isReturningUser]);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      scrollToBottom();
+    }, 100); 
+    return () => clearTimeout(timer);
+  }, [typingDone, loading, ipAddress, scrollToBottom]);
 
   const fetchIpAddress = async () => {
     setIpAddress((prev) =>
@@ -117,7 +132,7 @@ const Homepage = () => {
 
   if (isReturningUser) {
     return (
-      <div className="p-4 md:p-8 lg:p-10 h-full flex flex-col relative z-20">
+      <div ref={containerRef} className="p-4 md:p-8 lg:p-10 h-full flex flex-col relative z-20">
         <Typewriter
           mode="stack"
           className={className}
@@ -163,7 +178,7 @@ const Homepage = () => {
   }
 
   return (
-    <div className="p-4 md:p-8 lg:p-10 h-full flex flex-col relative z-20">
+    <div ref={containerRef} className="p-4 md:p-8 lg:p-10 h-full flex flex-col relative z-20">
       <Typewriter
         mode="stack" // 👈 key line
         className={className}
@@ -180,6 +195,7 @@ const Homepage = () => {
         loop={false}
         onFinish={() => {
           setTypingDone((prev) => ({ ...prev, p1: true }));
+          setTimeout(scrollToBottom, 100);
         }}
       />
 
@@ -192,6 +208,7 @@ const Homepage = () => {
           onFinish={() => {
             setLoading((prev) => ({ ...prev, l1: true }));
             fetchIpAddress();
+            setTimeout(scrollToBottom, 100);
           }}
           freezeOnStop={false}
         />
@@ -217,6 +234,7 @@ const Homepage = () => {
           loop={false}
           onFinish={() => {
             setTypingDone((prev) => ({ ...prev, p2: true }));
+            setTimeout(scrollToBottom, 100);
           }}
         />
       )}
@@ -228,6 +246,7 @@ const Homepage = () => {
           durationMs={3000}
           onFinish={() => {
             setLoading((prev) => ({ ...prev, l2: true }));
+            setTimeout(scrollToBottom, 100);
           }}
           freezeOnStop={false}
         />
@@ -254,6 +273,7 @@ const Homepage = () => {
           loop={false}
           onFinish={() => {
             setTypingDone((prev) => ({ ...prev, p3: true }));
+            setTimeout(scrollToBottom, 100);
           }}
         />
       )}
@@ -274,6 +294,7 @@ const Homepage = () => {
           loop={false}
           onFinish={() => {
             setTypingDone((prev) => ({ ...prev, p4: true }));
+            setTimeout(scrollToBottom, 100);
           }}
         />
       )}
@@ -300,6 +321,7 @@ const Homepage = () => {
           loop={false}
           onFinish={() => {
             setTypingDone((prev) => ({ ...prev, p5: true }));
+            setTimeout(scrollToBottom, 100);
           }}
           startDelay={6000}
         />
